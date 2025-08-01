@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>오늘의 운세</title>
+  <style>
+    body {
+      font-family: '나눔고딕', 돋움, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: #f0f8ff;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    h1 {
+      color: #2a7ae2;
+    }
+    #fortune {
+      margin: 20px;
+      font-size: 1.5rem;
+      min-height: 80px;
+      color: #444;
+      text-align: center;
+      padding: 15px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 400px;
+      user-select: none;
+    }
+    button {
+      background-color: #2a7ae2;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    button:hover {
+      background-color: #1951b8;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎲 오늘의 운세</h1>
+  <div id="fortune">버튼을 눌러 운세를 확인하세요!</div>
+  <button onclick="showFortune()">운세 보기</button>
+
+  <script>
+    const fortunes = [
+      // 좋은 일 💫
+      "좋은 일이 생길 거예요! 🌟",
+      "오늘은 행운이 가득해요! 🍀",
+      "기대 이상의 선물이 있을지도 몰라요! 🎁",
+      "긍정적인 마음이 행운을 부릅니다! 😊",
+      "작은 노력으로 큰 성과를 얻어요! 💪",
+
+      // 경고 ⚠️
+      "조심조심! 작은 실수가 있을 수 있어요. ⚠️",
+      "오늘은 잠시 멈추고 숨 고르기 좋은 날이에요. 🛑",
+      "급한 결정은 피하는 게 좋아요! ⏳",
+      "몸 건강에 신경 써야 하는 날입니다. 🩺",
+      "뜻밖의 변수에 대비하세요! 🔍",
+
+      // 중립 및 조언 📝
+      "새로운 만남이 기대돼요! 🤝",
+      "오늘은 휴식이 필요해요. 😴",
+      "느긋하게 하루를 즐겨보세요. ☕",
+      "작은 변화가 큰 기회가 될 수 있어요. 🔄",
+      "호기심을 가지고 주변을 살펴보세요. 👀",
+
+      // 재밌는 말투 😂
+      "오늘은 커피 대신 물을 마셔볼까요? ☕❌💧✅",
+      "운동은 내일부터! 오늘은 쉬어도 돼요~ 🛋️",
+      "행운이 다가올 때까지 미리 준비하세요! (혹시 모르니까요 😎)",
+      "냉장고 문은 열었지만, 뭐 먹을지 모르겠다면 운세가 필요해요! 🥪",
+      "눈 떠서 첫 생각이 ‘아, 오늘도 출근이구나’라면 힘내요! 💼"
+    ];
+
+    function showFortune() {
+      const idx = Math.floor(Math.random() * fortunes.length);
+      document.getElementById('fortune').textContent = fortunes[idx];
+    }
+  </script>
+
+</body>
+</html>
