@@ -16,12 +16,16 @@
       padding: 20px;
       box-sizing: border-box;
     }
+
     h1 {
       color: #2a7ae2;
+      font-size: 1.8rem; /* 제목도 살짝 줄임 */
+      margin-bottom: 10px;
     }
+
     #fortune {
       margin: 20px;
-      font-size: 1.5rem;
+      font-size: 1.2rem; /* 기존 1.5rem → 줄임 */
       min-height: 80px;
       color: #444;
       text-align: center;
@@ -32,17 +36,19 @@
       max-width: 400px;
       user-select: none;
     }
+
     button {
       background-color: #2a7ae2;
       color: white;
       border: none;
-      padding: 15px 30px;
+      padding: 12px 24px;
       border-radius: 8px;
-      font-size: 1.2rem;
+      font-size: 1rem; /* 기존 1.2rem → 줄임 */
       cursor: pointer;
       transition: background-color 0.3s ease;
       user-select: none;
     }
+
     button:hover {
       background-color: #1951b8;
     }
@@ -84,8 +90,6 @@
       "I'm happy. but, I can't 😄💔",
       "너 내일 근무한다는거 잊지마! 📆🔔😭",
       "상사는 때리면 안돼! 😇👊🚫"
-
-
     ];
 
     function showFortune() {
@@ -96,4 +100,3 @@
 
 </body>
 </html>
-
