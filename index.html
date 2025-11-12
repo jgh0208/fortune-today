@@ -9,11 +9,11 @@
     margin: 0;
     font-family: "Pretendard", sans-serif;
     height: 100vh;
-    background: linear-gradient(180deg, #a0d8f1, #ffffff);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(180deg, #a0d8f1, #ffffff);
+    flex-direction: column;
   }
 
   h1 {
@@ -22,45 +22,20 @@
     color: #333;
   }
 
-  /* 구름 컨테이너 */
-  .cloud {
-    position: relative;
-    background: #fff;
-    border-radius: 50%;
-    padding: 80px 140px;
-    font-size: 4rem;
-    font-weight: bold;
-    color: #2b6cb0;
-    text-align: center;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  .cloud-container {
+    width: 400px;
+    height: 200px;
     animation: floatCloud 4s ease-in-out infinite;
   }
 
-  /* 구름 여러 원 겹치기 */
-  .cloud::before,
-  .cloud::after {
-    content: '';
-    position: absolute;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  svg text {
+    font-size: 4rem;
+    font-weight: bold;
+    fill: #2b6cb0;
+    text-anchor: middle;
+    dominant-baseline: middle;
   }
 
-  .cloud::before {
-    width: 100px;
-    height: 100px;
-    top: -40px;
-    left: 20px;
-  }
-
-  .cloud::after {
-    width: 120px;
-    height: 120px;
-    top: -50px;
-    right: 20px;
-  }
-
-  /* 구름 위아래 떠다니기 */
   @keyframes floatCloud {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
@@ -72,7 +47,20 @@
 
 <h1>경현 D-Day</h1>
 
-<div class="cloud" id="dday"></div>
+<div class="cloud-container">
+  <svg viewBox="0 0 400 200" width="100%" height="100%">
+    <!-- 구름 모양 -->
+    <path d="M100 100
+             c -30 -40, 70 -80, 120 -40
+             c 50 -40, 120 20, 80 60
+             c 40 10, 10 80, -60 40
+             c -50 40, -120 -20, -80 -60
+             z"
+          fill="white" stroke="#ccc" stroke-width="3"/>
+    <!-- 중앙 글자 -->
+    <text x="200" y="110" id="dday">D-Day</text>
+  </svg>
+</div>
 
 <script>
   const targetDate = new Date("2025-11-26");
