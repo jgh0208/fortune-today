@@ -1,87 +1,82 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>D-Day Counter</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Pretendard", sans-serif;
-      height: 100vh;
-      background: linear-gradient(180deg, #a0d8f1, #ffffff);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      flex-direction: column;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D-Day Counter</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Pretendard", sans-serif;
+    height: 100vh;
+    background: linear-gradient(180deg, #a0d8f1, #ffffff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-    h1 {
-      color: #333;
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-      z-index: 10;
-      position: relative;
-    }
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #333;
+  }
 
-    /* 메인 구름 */
-    .cloud {
-      position: relative;
-      background: #ffffff;
-      border-radius: 60px;
-      padding: 80px 120px;
-      font-size: 4rem;
-      font-weight: bold;
-      color: #2b6cb0;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      animation: floatCloud 6s ease-in-out infinite;
-    }
+  /* 구름 */
+  .cloud {
+    position: relative;
+    background: #fff;
+    border-radius: 60px;
+    padding: 60px 120px;
+    font-size: 4rem;
+    font-weight: bold;
+    color: #2b6cb0;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: floatCloud 4s ease-in-out infinite;
+  }
 
-    /* 구름 장식 원 */
-    .cloud .circle {
-      position: absolute;
-      background: #ffffff;
-      border-radius: 50%;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
+  /* 구름 장식 */
+  .cloud::before,
+  .cloud::after {
+    content: '';
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  }
 
-    .cloud .circle1 { width: 100px; height: 100px; top: -50px; left: 40px; }
-    .cloud .circle2 { width: 120px; height: 120px; top: -60px; right: 40px; }
+  .cloud::before { width: 100px; height: 100px; top: -50px; left: 40px; }
+  .cloud::after  { width: 120px; height: 120px; top: -60px; right: 40px; }
 
-    /* 구름 위아래 떠다니는 애니메이션 */
-    @keyframes floatCloud {
-      0%   { transform: translateY(0px); }
-      50%  { transform: translateY(-20px); }
-      100% { transform: translateY(0px); }
-    }
-  </style>
+  @keyframes floatCloud {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+  }
+</style>
 </head>
 <body>
 
-  <h1>경현 D-Day</h1>
+<h1>경현 D-Day</h1>
 
-  <!-- 메인 D-Day 구름 -->
-  <div class="cloud" id="dday">
-    <span class="circle circle1"></span>
-    <span class="circle circle2"></span>
-    D-Day
-  </div>
+<!-- 구름 안에 D-Day 값 출력 -->
+<div class="cloud" id="dday">D-Day</div>
 
-  <script>
-    const targetDate = new Date("2025-11-26");
+<script>
+  const targetDate = new Date("2025-11-26");
 
-    function updateCountdown() {
-      const now = new Date();
-      const diff = targetDate - now;
-      const daysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
-      const text = daysLeft > 0 ? `D-${daysLeft}` : (daysLeft === 0 ? "D-Day!" : `D+${Math.abs(daysLeft)}`);
-      document.getElementById("dday").childNodes[2].nodeValue = text;
-    }
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
+    const daysLeft = Math.ceil(diff / (1000*60*60*24));
+    const text = daysLeft > 0 ? `D-${daysLeft}` : (daysLeft === 0 ? "D-Day!" : `D+${Math.abs(daysLeft)}`);
+    document.getElementById("dday").textContent = text; // 구름 안에 표시
+  }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000 * 60 * 60);
-  </script>
+  updateCountdown();
+  setInterval(updateCountdown, 1000*60*60); // 1시간마다 갱신
+</script>
+
 </body>
 </html>
