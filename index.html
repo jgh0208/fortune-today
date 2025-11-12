@@ -19,21 +19,16 @@
     height: 200px;
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* 텍스트가 구름 위로 올라오도록 */
+    align-items: center; /* 텍스트가 구름 중앙 위쪽에 위치 */
     font-family: Arial, sans-serif;
-    font-size: 2rem;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   }
 
   /* 구름 이미지 */
   .cloud {
     position: absolute;
-    bottom: 0; /* 구름을 컨테이너 아래쪽에 붙임 */
-    left: 0;
+    bottom: 0;
     width: 100%;
     height: auto;
-    background: url('free-icon-clouds-4680961.png') no-repeat center/contain;
     z-index: 1;
     pointer-events: none;
   }
@@ -42,20 +37,22 @@
   .dday-text {
     position: relative;
     z-index: 2; /* 구름 위에 표시 */
-    margin-bottom: 20px; /* 구름 위로 살짝 띄우기 */
-    text-align: center;
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 40px; /* 구름 위로 살짝 띄움 */
   }
 </style>
 </head>
 <body>
 
 <div class="cloud-container">
-  <div class="cloud"></div>
+  <img src="free-icon-clouds-4680961.png" alt="구름" class="cloud">
   <div class="dday-text" id="dday">D-0</div>
 </div>
 
 <script>
-  const targetDate = new Date('2025-11-26');
+  const targetDate = new Date('2025-12-01');
 
   function updateDday() {
     const today = new Date();
