@@ -13,35 +13,6 @@
     margin: 0;
     background-color: #87CEEB; /* 하늘색 배경 */
     font-family: Arial, sans-serif;
-    flex-direction: column;
-  }
-
-  /* 구름 이미지 */
-  .cloud {
-    position: relative;
-    width: 300px; /* 필요에 따라 이미지 크기 조정 */
-    height: auto;
-  }
-
-  /* 텍스트 전체 컨테이너 */
-  .text-container {
-    position: absolute;
-    top: -60px; /* 구름 위쪽으로 위치 조정 */
-    width: 100%;
-    text-align: center;
-    color: #333333;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.7);
-  }
-
-  .title-text {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-
-  .dday-text {
-    font-size: 1.8rem;
-    font-weight: bold;
   }
 
   /* 구름과 텍스트를 함께 담는 컨테이너 */
@@ -49,15 +20,45 @@
     position: relative;
     display: inline-block;
   }
+
+  /* 구름 이미지 */
+  .cloud {
+    display: block;
+    width: 300px; /* 이미지 크기에 맞춰 조절 */
+    height: auto;
+  }
+
+  /* 텍스트 전체 컨테이너 */
+  .text-container {
+    position: absolute;
+    top: -50px; /* 구름 위쪽으로 위치 조정 */
+    width: 100%;
+    text-align: center;
+    color: #333333;
+    text-shadow: 2px 2px 4px rgba(255,255,255,0.7);
+  }
+
+  /* 제목 */
+  .title-text {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  /* D-Day 텍스트 */
+  .dday-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
 </style>
 </head>
 <body>
 
 <div class="cloud-container">
-  <!-- 여기에 사용자가 제공한 구름 이미지 파일 경로 넣기 -->
+  <!-- 구름 이미지 경로를 사용자 제공 이미지로 변경 -->
   <img src="your-cloud-image.png" alt="구름" class="cloud">
-  
-  <!-- 텍스트: 제목 위, D-Day 아래 -->
+
+  <!-- 제목과 D-Day 텍스트 -->
   <div class="text-container">
     <div class="title-text">경현 D-DAY</div>
     <div class="dday-text" id="dday">D-0</div>
