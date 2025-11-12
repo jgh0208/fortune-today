@@ -14,7 +14,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
   }
 
   h1 {
@@ -23,34 +22,45 @@
     color: #333;
   }
 
-  /* 구름 */
+  /* 구름 컨테이너 */
   .cloud {
     position: relative;
     background: #fff;
-    border-radius: 60px;
-    padding: 60px 120px;
+    border-radius: 50%;
+    padding: 80px 140px;
     font-size: 4rem;
     font-weight: bold;
     color: #2b6cb0;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     animation: floatCloud 4s ease-in-out infinite;
   }
 
-  /* 구름 양쪽 둥근 장식 */
+  /* 구름 여러 원 겹치기 */
   .cloud::before,
   .cloud::after {
     content: '';
     position: absolute;
     background: #fff;
     border-radius: 50%;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
   }
 
-  .cloud::before { width: 100px; height: 100px; top: -50px; left: 40px; }
-  .cloud::after  { width: 120px; height: 120px; top: -60px; right: 40px; }
+  .cloud::before {
+    width: 100px;
+    height: 100px;
+    top: -40px;
+    left: 20px;
+  }
 
-  /* 구름 떠다니는 애니메이션 */
+  .cloud::after {
+    width: 120px;
+    height: 120px;
+    top: -50px;
+    right: 20px;
+  }
+
+  /* 구름 위아래 떠다니기 */
   @keyframes floatCloud {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
@@ -62,11 +72,9 @@
 
 <h1>경현 D-Day</h1>
 
-<!-- 구름 안에 D-Day 값만 표시 -->
 <div class="cloud" id="dday"></div>
 
 <script>
-  // 🎯 기준 날짜 설정
   const targetDate = new Date("2025-11-26");
 
   function updateCountdown() {
@@ -74,11 +82,11 @@
     const diff = targetDate - now;
     const daysLeft = Math.ceil(diff / (1000*60*60*24));
     const text = daysLeft > 0 ? `D-${daysLeft}` : (daysLeft === 0 ? "D-Day!" : `D+${Math.abs(daysLeft)}`);
-    document.getElementById("dday").textContent = text; // 구름 안에 표시
+    document.getElementById("dday").textContent = text;
   }
 
   updateCountdown();
-  setInterval(updateCountdown, 1000*60*60); // 1시간마다 갱신
+  setInterval(updateCountdown, 1000*60*60);
 </script>
 
 </body>
