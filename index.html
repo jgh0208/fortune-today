@@ -17,21 +17,53 @@
     h1 {
       font-size: 2.5rem;
       color: #333;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
-    .count {
+
+    /* 구름 말풍선 */
+    .cloud {
+      position: relative;
+      background: #ffffff;
+      border-radius: 50px;
+      padding: 50px 80px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
       font-size: 4rem;
       font-weight: bold;
       color: #2b6cb0;
+      text-align: center;
+      min-width: 250px;
+      transition: all 0.3s ease;
+    }
+
+    .cloud::before, .cloud::after {
+      content: '';
+      position: absolute;
+      background: #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .cloud::before {
+      width: 80px;
+      height: 80px;
+      top: -40px;
+      left: 30px;
+    }
+
+    .cloud::after {
+      width: 100px;
+      height: 100px;
+      top: -50px;
+      right: 30px;
     }
   </style>
 </head>
 <body>
   <h1>경현 D-Day</h1>
-  <div class="count" id="dday"></div>
+  <div class="cloud" id="dday"></div>
 
   <script>
-    // 🎯 여기서 날짜를 변경하세요 (예: 2025년 11월 30일)
+    // 🎯 여기서 날짜를 변경하세요 (예: 2025년 11월 26일)
     const targetDate = new Date("2025-11-26");
 
     function updateCountdown() {
