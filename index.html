@@ -16,48 +16,52 @@
     flex-direction: column;
   }
 
-  /* 구름 (장식용) */
+  /* 구름 이미지 */
   .cloud {
-    width: 300px;
-    height: 150px;
-    background: #ffffff;
-    border-radius: 100px;
-    box-shadow: 40px 20px 0 0 #ffffff,
-                80px 20px 0 0 #ffffff,
-                60px 50px 0 0 #ffffff;
-    margin-bottom: 20px; /* 구름과 텍스트 사이 간격 */
+    position: relative;
+    width: 300px; /* 필요에 따라 이미지 크기 조정 */
+    height: auto;
   }
 
   /* 텍스트 전체 컨테이너 */
   .text-container {
+    position: absolute;
+    top: -60px; /* 구름 위쪽으로 위치 조정 */
+    width: 100%;
     text-align: center;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    color: #333333;
+    text-shadow: 2px 2px 4px rgba(255,255,255,0.7);
   }
 
-  /* 제목 */
   .title-text {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 10px; /* D-Day와 간격 */
-  }
-
-  /* D-Day 텍스트 */
-  .dday-text {
     font-size: 2rem;
     font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .dday-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  /* 구름과 텍스트를 함께 담는 컨테이너 */
+  .cloud-container {
+    position: relative;
+    display: inline-block;
   }
 </style>
 </head>
 <body>
 
-<!-- 구름 (장식) -->
-<div class="cloud"></div>
-
-<!-- 텍스트: 제목 위, D-Day 아래 -->
-<div class="text-container">
-  <div class="title-text">경현 D-DAY</div>
-  <div class="dday-text" id="dday">D-0</div>
+<div class="cloud-container">
+  <!-- 여기에 사용자가 제공한 구름 이미지 파일 경로 넣기 -->
+  <img src="your-cloud-image.png" alt="구름" class="cloud">
+  
+  <!-- 텍스트: 제목 위, D-Day 아래 -->
+  <div class="text-container">
+    <div class="title-text">경현 D-DAY</div>
+    <div class="dday-text" id="dday">D-0</div>
+  </div>
 </div>
 
 <script>
