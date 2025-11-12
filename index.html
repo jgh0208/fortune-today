@@ -1,81 +1,49 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>경현 D-DAY</title>
-<style>
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #87CEEB; /* 하늘색 배경 */
-    font-family: Arial, sans-serif;
-    flex-direction: column;
-  }
-
-  /* CSS 구름 (장식용) */
-  .cloud {
-    width: 300px;
-    height: 150px;
-    background: #ffffff;
-    border-radius: 100px;
-    box-shadow: 40px 20px 0 0 #ffffff,
-                80px 20px 0 0 #ffffff,
-                60px 50px 0 0 #ffffff;
-    margin-bottom: 50px; /* 구름과 텍스트 사이 간격 */
-  }
-
-  /* 제목 텍스트 */
-  .title-text {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  /* D-Day 텍스트 */
-  .dday-text {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    text-align: center;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D-Day Counter</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      font-family: "Pretendard", sans-serif;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .count {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #2b6cb0;
+    }
+  </style>
 </head>
 <body>
+  <h1>퇴사 D-Day</h1>
+  <div class="count" id="dday"></div>
 
-<!-- 구름 (장식) -->
-<div class="cloud"></div>
+  <script>
+    // 🎯 여기서 날짜를 변경하세요 (예: 2025년 11월 30일)
+    const targetDate = new Date("2025-11-26");
 
-<!-- 제목 -->
-<div class="title-text">경현 D-DAY</div>
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+      const daysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
+      document.getElementById("dday").textContent =
+        daysLeft > 0 ? `D-${daysLeft}` : (daysLeft === 0 ? "D-Day!" : `D+${Math.abs(daysLeft)}`);
+    }
 
-<!-- D-Day 계산 결과 -->
-<div class="dday-text" id="dday">D-0</div>
-
-<script>
-  // 기준 날짜: 2025-11-26
-  const referenceDate = new Date('2025-11-26');
-
-  function updateDday() {
-    const today = new Date();
-    const diffTime = referenceDate - today;
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    const text = diffDays > 0 ? `D-${diffDays}` :
-                 diffDays === 0 ? 'D-Day!' :
-                 `D+${Math.abs(diffDays)}`;
-    document.getElementById('dday').innerText = text;
-  }
-
-  updateDday();
-  setInterval(updateDday, 1000 * 60 * 60); // 1시간마다 갱신
-</script>
-
+    updateCountdown();
+    setInterval(updateCountdown, 1000 * 60 * 60); // 매시간 갱신
+  </script>
 </body>
 </html>
