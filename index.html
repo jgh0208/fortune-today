@@ -18,54 +18,55 @@
   .cloud-container {
     position: relative;
     width: 300px;
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end; /* 텍스트가 구름 위로 올라오도록 */
+    height: 150px;
   }
 
-  /* 구름 이미지 */
+  /* CSS 구름 */
   .cloud {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
+    background: #ffffff;
+    border-radius: 100px;
+    box-shadow: 40px 20px 0 0 #ffffff,
+                80px 20px 0 0 #ffffff,
+                60px 50px 0 0 #ffffff;
     z-index: 1;
-    pointer-events: none;
   }
 
   /* D-Day 텍스트 */
   .dday-text {
-    position: relative;
-    z-index: 2; /* 구름 위 표시 */
+    position: absolute;
+    top: 30px; /* 구름 위쪽에서 텍스트 위치 */
+    width: 100%;
+    text-align: center;
+    z-index: 2;
     font-size: 2rem;
     font-weight: bold;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    margin-bottom: 50px; /* 구름 위로 띄움 */
-    text-align: center;
+    color: #333333;
   }
 </style>
 </head>
 <body>
 
 <div class="cloud-container">
-  <!-- 무료 구름 이미지 URL -->
-  <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Cloud_icon.png" alt="구름" class="cloud">
+  <div class="cloud"></div>
   <div class="dday-text" id="dday">경현 D-DAY</div>
 </div>
 
 <script>
-  // 목표 날짜 설정 (예: 2025-12-01)
-  const targetDate = new Date('2025-11-26');
+  // 기준 날짜: 2025-11-26
+  const referenceDate = new Date('2025-11-26');
 
   function updateDday() {
     const today = new Date();
-    const timeDiff = targetDate - today;
-    const dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-    const ddayText = dayDiff > 0 ? `경현 D-DAY: D-${dayDiff}` :
-                     dayDiff === 0 ? '경현 D-DAY: D-Day!' : `경현 D-DAY: D+${Math.abs(dayDiff)}`;
-    document.getElementById('dday').innerText = ddayText;
+    const diffTime = referenceDate - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    const text = diffDays > 0 ? `경현 D-DAY: D-${diffDays}` :
+                 diffDays === 0 ? '경현 D-DAY: D-Day!' :
+                 `경현 D-DAY: D+${Math.abs(diffDays)}`;
+    document.getElementById('dday').innerText = text;
   }
 
   updateDday();
