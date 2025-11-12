@@ -25,24 +25,26 @@
     display: block;
     width: 300px; /* 필요 시 조정 */
     height: auto;
+    z-index: 1; /* 구름이 텍스트 아래 */
   }
 
   .text-container {
     position: absolute;
-    top: -60px; /* 구름 위쪽 위치 */
+    top: 10px; /* 구름 안쪽 위쪽으로 위치 */
     width: 100%;
     text-align: center;
-    color: #000000; /* 글자색 검은색 */
+    color: #000000; /* 글자 색상 검은색 */
+    z-index: 2; /* 구름 위로 표시 */
   }
 
   .title-text {
-    font-size: 2.5rem; /* 제목 글자 크기 조정 */
+    font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 5px;
   }
 
   .dday-text {
-    font-size: 2rem; /* D-Day 글자 크기 조정 */
+    font-size: 2rem;
     font-weight: bold;
   }
 </style>
