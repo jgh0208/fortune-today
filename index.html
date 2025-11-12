@@ -16,39 +16,33 @@
     flex-direction: column;
   }
 
-  /* 구름과 텍스트를 함께 담는 컨테이너 */
   .cloud-container {
     position: relative;
     display: inline-block;
   }
 
-  /* 구름 이미지 */
   .cloud {
     display: block;
-    width: 300px; /* 이미지 크기에 맞춰 조정 가능 */
+    width: 300px; /* 필요 시 조정 */
     height: auto;
   }
 
-  /* 텍스트 컨테이너 */
   .text-container {
     position: absolute;
-    top: -60px; /* 구름 위쪽으로 위치 */
+    top: -60px; /* 구름 위쪽 위치 */
     width: 100%;
     text-align: center;
-    color: #333333;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.7);
+    color: #000000; /* 글자색 검은색 */
   }
 
-  /* 제목 */
   .title-text {
-    font-size: 2rem;
+    font-size: 2.5rem; /* 제목 글자 크기 조정 */
     font-weight: bold;
     margin-bottom: 5px;
   }
 
-  /* D-Day 텍스트 */
   .dday-text {
-    font-size: 1.8rem;
+    font-size: 2rem; /* D-Day 글자 크기 조정 */
     font-weight: bold;
   }
 </style>
@@ -56,10 +50,7 @@
 <body>
 
 <div class="cloud-container">
-  <!-- 구름 이미지: index.html과 같은 폴더에 cloud.png 넣기 -->
   <img src="cloud.png" alt="구름" class="cloud">
-
-  <!-- 제목과 D-Day 텍스트 -->
   <div class="text-container">
     <div class="title-text">경현 D-DAY</div>
     <div class="dday-text" id="dday">D-0</div>
@@ -67,7 +58,6 @@
 </div>
 
 <script>
-  // 기준 날짜: 2025-11-26
   const referenceDate = new Date('2025-11-26');
 
   function updateDday() {
