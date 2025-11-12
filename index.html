@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>D-Day 구름 + 무지개</title>
+<title>D-Day 구름</title>
 <style>
   body {
     display: flex;
@@ -19,41 +19,30 @@
     height: 200px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end; /* 텍스트가 구름 위로 올라오도록 */
     font-family: Arial, sans-serif;
     font-size: 2rem;
     color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   }
 
-  /* 무지개 */
-  .rainbow {
-    position: absolute;
-    top: -30px; /* 구름 위쪽으로 살짝 올라가게 */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px; /* 작게 */
-    height: auto;
-    z-index: 1; /* 구름과 텍스트 뒤 */
-    opacity: 0.8;
-  }
-
-  /* 구름 */
+  /* 구름 이미지 */
   .cloud {
     position: absolute;
-    top: 0;
+    bottom: 0; /* 구름을 컨테이너 아래쪽에 붙임 */
     left: 0;
     width: 100%;
-    height: 100%;
+    height: auto;
     background: url('free-icon-clouds-4680961.png') no-repeat center/contain;
-    z-index: 2; /* 텍스트 바로 뒤 */
-    pointer-events: none; /* 클릭 이벤트를 막아 텍스트 선택 가능 */
+    z-index: 1;
+    pointer-events: none;
   }
 
   /* D-Day 텍스트 */
   .dday-text {
     position: relative;
-    z-index: 3; /* 가장 위 */
+    z-index: 2; /* 구름 위에 표시 */
+    margin-bottom: 20px; /* 구름 위로 살짝 띄우기 */
     text-align: center;
   }
 </style>
@@ -61,7 +50,6 @@
 <body>
 
 <div class="cloud-container">
-  <img src="free-icon-rainbow-4139042.png" alt="무지개" class="rainbow">
   <div class="cloud"></div>
   <div class="dday-text" id="dday">D-0</div>
 </div>
@@ -79,7 +67,7 @@
   }
 
   updateDday();
-  setInterval(updateDday, 1000 * 60 * 60);
+  setInterval(updateDday, 1000 * 60 * 60); // 1시간마다 갱신
 </script>
 
 </body>
