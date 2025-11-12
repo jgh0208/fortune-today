@@ -3,69 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>D-Day Cloud</title>
+<title>D-Day 구름 표시</title>
 <style>
   body {
-    margin: 0;
-    height: 100vh;
-    font-family: "Pretendard", sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('free-icon-rainbow-4139042.png') no-repeat center bottom;
-    background-size: contain;
-    flex-direction: column;
+    height: 100vh;
+    background-color: #87CEEB; /* 하늘색 배경 */
   }
 
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    color: #333;
-  }
-
-  .cloud-wrapper {
+  .cloud-container {
     position: relative;
-    display: inline-block;
-  }
-
-  .cloud-wrapper img {
-    width: 300px; /* 구름 이미지 크기 */
-  }
-
-  .cloud-wrapper .dday {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 4rem;
-    font-weight: bold;
-    color: #2b6cb0;
-    text-align: center;
+    width: 300px;
+    height: 200px;
+    background: url('free-icon-clouds-4680961.png') no-repeat center/contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    font-size: 2rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   }
 </style>
 </head>
 <body>
 
-<h1>경현 D-Day</h1>
-
-<div class="cloud-wrapper">
-  <img src="free-icon-clouds-4680961.png" alt="cloud"> <!-- 구름 이미지 -->
-  <div class="dday" id="dday"></div>
-</div>
+<div class="cloud-container" id="dday">D-0</div>
 
 <script>
-  const targetDate = new Date("2025-11-26");
+  // 목표 날짜 설정 (YYYY-MM-DD)
+  const targetDate = new Date('2025-12-01');
 
-  function updateCountdown() {
-    const now = new Date();
-    const diff = targetDate - now;
-    const daysLeft = Math.ceil(diff / (1000*60*60*24));
-    const text = daysLeft > 0 ? `D-${daysLeft}` : (daysLeft === 0 ? "D-Day!" : `D+${Math.abs(daysLeft)}`);
-    document.getElementById("dday").textContent = text;
+  function updateDday() {
+    const today = new Date();
+    const timeDiff = targetDate - today;
+    const dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+    const ddayText = dayDiff > 0 ? `D-${dayDiff}` :
+                     dayDiff === 0 ? 'D-Day!' : `D+${Math.abs(dayDiff)}`;
+    document.getElementById('dday').innerText = ddayText;
   }
 
-  updateCountdown();
-  setInterval(updateCountdown, 1000*60*60);
+  updateDday();
+  setInterval(updateDday, 1000 * 60 * 60); // 1시간마다 갱신
 </script>
 
 </body>
