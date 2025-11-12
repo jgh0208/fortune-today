@@ -3,46 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>D-Day 구름 표시</title>
+<title>경현 D-DAY</title>
 <style>
   body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
     background-color: #87CEEB; /* 하늘색 배경 */
+    font-family: Arial, sans-serif;
+    flex-direction: column;
   }
 
+  /* 구름과 텍스트를 함께 담는 컨테이너 */
   .cloud-container {
     position: relative;
-    width: 300px;
-    height: 200px;
-    background: url('free-icon-clouds-4680961.png') no-repeat center/contain;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
+    display: inline-block;
+  }
+
+  /* 구름 이미지 */
+  .cloud {
+    display: block;
+    width: 300px; /* 이미지 크기에 맞춰 조정 가능 */
+    height: auto;
+  }
+
+  /* 텍스트 컨테이너 */
+  .text-container {
+    position: absolute;
+    top: -60px; /* 구름 위쪽으로 위치 */
+    width: 100%;
+    text-align: center;
+    color: #333333;
+    text-shadow: 2px 2px 4px rgba(255,255,255,0.7);
+  }
+
+  /* 제목 */
+  .title-text {
     font-size: 2rem;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  /* D-Day 텍스트 */
+  .dday-text {
+    font-size: 1.8rem;
+    font-weight: bold;
   }
 </style>
 </head>
 <body>
 
-<div class="cloud-container" id="dday">D-0</div>
+<div class="cloud-container">
+  <!-- 구름 이미지: index.html과 같은 폴더에 cloud.png 넣기 -->
+  <img src="cloud.png" alt="구름" class="cloud">
+
+  <!-- 제목과 D-Day 텍스트 -->
+  <div class="text-container">
+    <div class="title-text">경현 D-DAY</div>
+    <div class="dday-text" id="dday">D-0</div>
+  </div>
+</div>
 
 <script>
-  // 목표 날짜 설정 (YYYY-MM-DD)
-  const targetDate = new Date('2025-11-26');
+  // 기준 날짜: 2025-11-26
+  const referenceDate = new Date('2025-11-26');
 
   function updateDday() {
     const today = new Date();
-    const timeDiff = targetDate - today;
-    const dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-    const ddayText = dayDiff > 0 ? `D-${dayDiff}` :
-                     dayDiff === 0 ? 'D-Day!' : `D+${Math.abs(dayDiff)}`;
-    document.getElementById('dday').innerText = ddayText;
+    const diffTime = referenceDate - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    const text = diffDays > 0 ? `D-${diffDays}` :
+                 diffDays === 0 ? 'D-Day!' :
+                 `D+${Math.abs(diffDays)}`;
+    document.getElementById('dday').innerText = text;
   }
 
   updateDday();
