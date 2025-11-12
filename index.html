@@ -16,50 +16,51 @@
     flex-direction: column;
   }
 
-  .cloud-container {
-    position: relative;
-    display: inline-block;
-  }
-
+  /* CSS 구름 (장식용) */
   .cloud {
-    display: block;
-    width: 300px; /* 필요 시 조정 */
-    height: auto;
-    z-index: 1; /* 구름이 텍스트 아래 */
+    width: 300px;
+    height: 150px;
+    background: #ffffff;
+    border-radius: 100px;
+    box-shadow: 40px 20px 0 0 #ffffff,
+                80px 20px 0 0 #ffffff,
+                60px 50px 0 0 #ffffff;
+    margin-bottom: 50px; /* 구름과 텍스트 사이 간격 */
   }
 
-  .text-container {
-    position: absolute;
-    top: 10px; /* 구름 안쪽 위쪽으로 위치 */
-    width: 100%;
-    text-align: center;
-    color: #000000; /* 글자 색상 검은색 */
-    z-index: 2; /* 구름 위로 표시 */
-  }
-
+  /* 제목 텍스트 */
   .title-text {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: bold;
-    margin-bottom: 5px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-align: center;
+    margin-bottom: 20px;
   }
 
+  /* D-Day 텍스트 */
   .dday-text {
     font-size: 2rem;
     font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-align: center;
   }
 </style>
 </head>
 <body>
 
-<div class="cloud-container">
-  <img src="cloud.png" alt="구름" class="cloud">
-  <div class="text-container">
-    <div class="title-text">경현 D-DAY</div>
-    <div class="dday-text" id="dday">D-0</div>
-  </div>
-</div>
+<!-- 구름 (장식) -->
+<div class="cloud"></div>
+
+<!-- 제목 -->
+<div class="title-text">경현 D-DAY</div>
+
+<!-- D-Day 계산 결과 -->
+<div class="dday-text" id="dday">D-0</div>
 
 <script>
+  // 기준 날짜: 2025-11-26
   const referenceDate = new Date('2025-11-26');
 
   function updateDday() {
