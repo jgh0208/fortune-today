@@ -10,6 +10,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
     background-color: #87CEEB; /* 하늘색 배경 */
   }
 
@@ -19,8 +20,7 @@
     height: 200px;
     display: flex;
     justify-content: center;
-    align-items: center; /* 텍스트가 구름 중앙 위쪽에 위치 */
-    font-family: Arial, sans-serif;
+    align-items: flex-end; /* 텍스트가 구름 위쪽으로 올라가도록 */
   }
 
   /* 구름 이미지 */
@@ -30,24 +30,26 @@
     width: 100%;
     height: auto;
     z-index: 1;
-    pointer-events: none;
   }
 
   /* D-Day 텍스트 */
   .dday-text {
     position: relative;
-    z-index: 2; /* 구름 위에 표시 */
+    z-index: 2; /* 구름 위 */
     font-size: 2.5rem;
+    font-weight: bold;
     color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    margin-bottom: 40px; /* 구름 위로 살짝 띄움 */
+    margin-bottom: 50px; /* 구름 위로 띄움 */
+    text-align: center;
   }
 </style>
 </head>
 <body>
 
 <div class="cloud-container">
-  <img src="free-icon-clouds-4680961.png" alt="구름" class="cloud">
+  <!-- 구름 이미지 경로를 반드시 실제 이미지 파일 경로로 바꾸세요 -->
+  <img src="cloud.png" alt="구름" class="cloud">
   <div class="dday-text" id="dday">D-0</div>
 </div>
 
