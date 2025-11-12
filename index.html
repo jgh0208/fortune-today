@@ -11,13 +11,18 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      background: linear-gradient(180deg, #a0d8f1, #ffffff);
       font-family: "Pretendard", sans-serif;
+      overflow: hidden;
+      margin: 0;
     }
+
     h1 {
       font-size: 2.5rem;
       color: #333;
       margin-bottom: 20px;
+      z-index: 10;
+      position: relative;
     }
 
     /* 구름 말풍선 */
@@ -26,56 +31,106 @@
       background: #ffffff;
       border-radius: 50px;
       padding: 50px 80px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
       font-size: 4rem;
       font-weight: bold;
       color: #2b6cb0;
       text-align: center;
       min-width: 250px;
-      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      animation: floatCloud 6s ease-in-out infinite alternate;
     }
 
-    .cloud::before, .cloud::after {
+    /* 구름 장식 원 */
+    .cloud span {
+      position: absolute;
+      background: #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    .cloud .circle1 { width: 80px; height: 80px; top: -40px; left: 30px; }
+    .cloud .circle2 { width: 100px; height: 100px; top: -50px; right: 30px; }
+
+    /* 구름 애니메이션 */
+    @keyframes floatCloud {
+      0%   { transform: translateY(0px); }
+      50%  { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* 떠다니는 작은 구름 배경용 */
+    .small-cloud {
+      position: absolute;
+      background: #ffffff;
+      border-radius: 50px;
+      width: 120px;
+      height: 60px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      animation: moveClouds linear infinite;
+    }
+
+    .small-cloud::before, .small-cloud::after {
       content: '';
       position: absolute;
       background: #ffffff;
       border-radius: 50%;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
 
-    .cloud::before {
-      width: 80px;
-      height: 80px;
-      top: -40px;
-      left: 30px;
+    .small-cloud::before {
+      width: 50px;
+      height: 50px;
+      top: -25px;
+      left: 10px;
     }
 
-    .cloud::after {
-      width: 100px;
-      height: 100px;
-      top: -50px;
-      right: 30px;
+    .small-cloud::after {
+      width: 70px;
+      height: 70px;
+      top: -35px;
+      right: 10px;
     }
+
+    @keyframes moveClouds {
+      0%   { transform: translateX(-200px); }
+      100% { transform: translateX(120vw); }
+    }
+
+    /* 여러 구름 위치와 속도 조정 */
+    .cloud1 { top: 50px; animation-duration: 40s; }
+    .cloud2 { top: 150px; animation-duration: 60s; }
+    .cloud3 { top: 250px; animation-duration: 80s; }
+
   </style>
 </head>
 <body>
   <h1>경현 D-Day</h1>
-  <div class="cloud" id="dday"></div>
+
+  <!-- 메인 D-Day 구름 -->
+  <div class="cloud" id="dday">
+    <span class="circle1"></span>
+    <span class="circle2"></span>
+  </div>
+
+  <!-- 배경 구름 -->
+  <div class="small-cloud cloud1"></div>
+  <div class="small-cloud cloud2"></div>
+  <div class="small-cloud cloud3"></div>
 
   <script>
-    // 🎯 여기서 날짜를 변경하세요 (예: 2025년 11월 26일)
+    // 🎯 기준 날짜 설정
     const targetDate = new Date("2025-11-26");
 
     function updateCountdown() {
       const now = new Date();
       const diff = targetDate - now;
       const daysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
-      document.getElementById("dday").textContent =
-        daysLeft > 0 ? `D-${daysLeft}` : (daysLeft === 0 ? "D-Day!" : `D+${Math.abs(daysLeft)}`);
+      const ddayText = daysLeft > 0 ? `D-${daysLeft}` : (daysLeft === 0 ? "D-Day!" : `D+${Math.abs(daysLeft)}`);
+      document.getElementById("dday").childNodes[0].nodeValue = ddayText;
     }
 
+    // 페이지 로드 시
     updateCountdown();
-    setInterval(updateCountdown, 1000 * 60 * 60); // 매시간 갱신
+    setInterval(updateCountdown, 1000 * 60 * 60);
   </script>
 </body>
 </html>
